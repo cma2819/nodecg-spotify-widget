@@ -67,7 +67,7 @@ export default class App extends Vue {
   colors = COLORS;
 
   get spotifyScope(): string {
-    return 'user-read-private%20user-read-currently-playing'
+    return 'user-read-private%20user-read-currently-playing%20user-read-playback-state'
   }
 
   get spotifyUser(): string {

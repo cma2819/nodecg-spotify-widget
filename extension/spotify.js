@@ -4,7 +4,7 @@ var tslib_1 = require("tslib");
 var express_1 = tslib_1.__importDefault(require("express"));
 var SpotifyWebApi = require("spotify-web-api-node");
 exports.spotify = function (nodecg) { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
-    var logger, config, callApiInterval, refreshInterval, app, spotifyApi, spotifyPlayingTrack, spotifyTokensRep, spotifyStatusRep, spotifyUserData, getUserProfile, clearUserProfile, getPlayingTrack, clearPlayingTrack, logout, refreshToken, setRefreshInterval, setCallApiInterval;
+    var logger, config, callApiInterval, refreshInterval, app, spotifyApi, spotifyPlayingTrack, spotifyTokensRep, spotifyStatusRep, spotifyUserData, spotifyContextRep, getUserProfile, clearUserProfile, getPlayingTrack, getCurrentlyPlayingContext, clearPlayingTrack, logout, refreshToken, setRefreshInterval, setCallApiInterval;
     return tslib_1.__generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -31,6 +31,9 @@ exports.spotify = function (nodecg) { return tslib_1.__awaiter(void 0, void 0, v
                 });
                 spotifyUserData = nodecg.Replicant('spotifyUserData', {
                     defaultValue: {}
+                });
+                spotifyContextRep = nodecg.Replicant('spotifyContext', {
+                    defaultValue: null
                 });
                 getUserProfile = function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
                     var profile, err_1;
@@ -85,6 +88,26 @@ exports.spotify = function (nodecg) { return tslib_1.__awaiter(void 0, void 0, v
                         }
                     });
                 }); };
+                getCurrentlyPlayingContext = function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+                    var context, body, err_3;
+                    return tslib_1.__generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                _a.trys.push([0, 2, , 3]);
+                                return [4 /*yield*/, spotifyApi.getMyCurrentPlaybackState()];
+                            case 1:
+                                context = _a.sent();
+                                body = context.body;
+                                spotifyContextRep.value = body;
+                                return [3 /*break*/, 3];
+                            case 2:
+                                err_3 = _a.sent();
+                                logger.warn(err_3);
+                                return [3 /*break*/, 3];
+                            case 3: return [2 /*return*/];
+                        }
+                    });
+                }); };
                 clearPlayingTrack = function () {
                     spotifyPlayingTrack.value = null;
                 };
@@ -99,7 +122,7 @@ exports.spotify = function (nodecg) { return tslib_1.__awaiter(void 0, void 0, v
                 };
                 nodecg.listenFor('spotify:logout', logout);
                 refreshToken = function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
-                    var refreshResponse, err_3;
+                    var refreshResponse, err_4;
                     return tslib_1.__generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
@@ -117,8 +140,8 @@ exports.spotify = function (nodecg) { return tslib_1.__awaiter(void 0, void 0, v
                                 logger.info('Refreshed access token.');
                                 return [3 /*break*/, 3];
                             case 2:
-                                err_3 = _a.sent();
-                                logger.warn(err_3);
+                                err_4 = _a.sent();
+                                logger.warn(err_4);
                                 logout();
                                 return [3 /*break*/, 3];
                             case 3: return [2 /*return*/];
@@ -138,6 +161,7 @@ exports.spotify = function (nodecg) { return tslib_1.__awaiter(void 0, void 0, v
                     callApiInterval = setInterval(function () {
                         getPlayingTrack();
                         getUserProfile();
+                        getCurrentlyPlayingContext();
                     }, 2000);
                 };
                 if (!(spotifyTokensRep.value.accessToken && spotifyTokensRep.value.refreshToken && spotifyTokensRep.value.expiresIn)) return [3 /*break*/, 2];

@@ -2,19 +2,22 @@ import { SpotifyPlayingTrack } from './generated/spotifyPlayingTrack';
 import { SpotifyTokens } from "./generated/spotifyTokens";
 import { SpotifyStatus } from "./generated/spotifyStatus";
 import { SpotifyUserData } from './generated/spotifyUserData';
+import { SpotifyPlayingContext } from './generated/spotifyPlayingContext';
 
 type ReplicantMap = {
     spotifyPlayingTrack: SpotifyPlayingTrack,
     spotifyStatus: SpotifyStatus,
     spotifyTokens: SpotifyTokens,
     spotifyUserData: SpotifyUserData,
+    spotifyContext: SpotifyPlayingContext
 };
 
 type ReplicantName = (
     'spotifyPlayingTrack' |
     'spotifyStatus' |
     'spotifyTokens' |
-    'spotifyUserData'
+    'spotifyUserData' |
+    'spotifyPlayingContext'
 );
 
 export {

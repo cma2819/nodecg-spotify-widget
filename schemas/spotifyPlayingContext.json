@@ -1,0 +1,62 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "oneOf": [
+        {
+            "type": "null"
+        },
+        {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "device": {
+                    "type": "object"
+                },
+                "context": {
+                    
+                    "oneOf": [
+                        {
+                            "type":"object"     
+                        },
+                        {
+                            "type":"null"
+                        }
+                    ]
+                },
+                "timestamp": {
+                    "type":"number"
+                },
+                "progress_ms": {
+                    "oneOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "is_playing": {
+                    "type": "boolean"
+                },
+                "item": {
+                    "oneOf": [
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "device",
+                "context",
+                "timestamp",
+                "progress_ms",
+                "is_playing",
+                "item"
+            ]
+        }
+    ]
+}

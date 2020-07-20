@@ -31,6 +31,9 @@ export const spotify = async (nodecg: NodeCG): Promise<void> => {
     const spotifyUserData = nodecg.Replicant('spotifyUserData', {
         defaultValue: {}
     });
+    const spotifyContextRep = nodecg.Replicant('spotifyContext', {
+        defaultValue: null
+    });
     
     const getUserProfile = async (): Promise<void> => {
         try {
@@ -60,6 +63,16 @@ export const spotify = async (nodecg: NodeCG): Promise<void> => {
                     })
                 }
             }
+        } catch (err) {
+            logger.warn(err);
+        }
+    }
+
+    const getCurrentlyPlayingContext = async (): Promise<void> => {
+        try {
+            const context = await spotifyApi.getMyCurrentPlaybackState();
+            const body = context.body;
+            spotifyContextRep.value = body;
         } catch (err) {
             logger.warn(err);
         }
@@ -111,6 +124,7 @@ export const spotify = async (nodecg: NodeCG): Promise<void> => {
         callApiInterval = setInterval(() => {
             getPlayingTrack();
             getUserProfile();
+            getCurrentlyPlayingContext();
         }, 2000);
     }
 
