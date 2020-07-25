@@ -1,6 +1,6 @@
 {
   "name": "nodecg-spotify-widget",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "NodeCG layout bundle for showing spotify track information.",
   "homepage": "https://github.com/cma2819/nodecg-spotify-widget#readme",
   "author": "Cma",
@@ -76,7 +76,7 @@
     "parcel-bundler": "^1.12.4",
     "stylus": "^0.54.7",
     "trash-cli": "^3.0.0",
-    "ts-nodecg": "^0.3.0",
+    "ts-nodecg": "^0.3.1",
     "typescript": "^3.7.5",
     "vue-eslint-parser": "^7.0.0",
     "vue-property-decorator": "^8.4.0",
