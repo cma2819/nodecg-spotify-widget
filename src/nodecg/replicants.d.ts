@@ -9,7 +9,7 @@ type ReplicantMap = {
     spotifyStatus: SpotifyStatus,
     spotifyTokens: SpotifyTokens,
     spotifyUserData: SpotifyUserData,
-    spotifyContext: SpotifyPlayingContext
+    spotifyPlayingContext: SpotifyPlayingContext
 };
 
 type ReplicantName = (

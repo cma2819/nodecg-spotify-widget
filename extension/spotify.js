@@ -32,7 +32,7 @@ exports.spotify = function (nodecg) { return tslib_1.__awaiter(void 0, void 0, v
                 spotifyUserData = nodecg.Replicant('spotifyUserData', {
                     defaultValue: {}
                 });
-                spotifyContextRep = nodecg.Replicant('spotifyContext', {
+                spotifyContextRep = nodecg.Replicant('spotifyPlayingContext', {
                     defaultValue: null
                 });
                 getUserProfile = function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {

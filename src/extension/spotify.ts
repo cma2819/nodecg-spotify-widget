@@ -31,7 +31,7 @@ export const spotify = async (nodecg: NodeCG): Promise<void> => {
     const spotifyUserData = nodecg.Replicant('spotifyUserData', {
         defaultValue: {}
     });
-    const spotifyContextRep = nodecg.Replicant('spotifyContext', {
+    const spotifyContextRep = nodecg.Replicant('spotifyPlayingContext', {
         defaultValue: null
     });
     
