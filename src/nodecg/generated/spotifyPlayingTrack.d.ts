@@ -8,4 +8,5 @@
 export type SpotifyPlayingTrack = null | {
 	name: string;
 	artists: string[];
+	albumName: string;
 };

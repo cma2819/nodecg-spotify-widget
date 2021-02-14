@@ -60,7 +60,8 @@ export const spotify = async (nodecg: NodeCG): Promise<void> => {
                     name: item.name,
                     artists: item.artists.map((artist) => {
                         return artist.name;
-                    })
+                    }),
+                    albumName: item.album.name
                 }
             }
         } catch (err) {

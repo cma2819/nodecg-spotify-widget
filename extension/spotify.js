@@ -76,7 +76,8 @@ exports.spotify = function (nodecg) { return tslib_1.__awaiter(void 0, void 0, v
                                         name: item.name,
                                         artists: item.artists.map(function (artist) {
                                             return artist.name;
-                                        })
+                                        }),
+                                        albumName: item.album.name
                                     };
                                 }
                                 return [3 /*break*/, 3];

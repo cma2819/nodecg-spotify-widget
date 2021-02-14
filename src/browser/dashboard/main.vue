@@ -49,6 +49,9 @@
             <div class="ml-2">
               {{ playingTrackArtists }}
             </div>
+            <div class="ml-2">
+              {{ playingTrackAlbumName }}
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -84,6 +87,13 @@ export default class App extends Vue {
   get playingTrackArtists(): string {
     if (replicant.spotifyPlayingTrack) {
       return replicant.spotifyPlayingTrack.artists.join('/');
+    }
+    return '';
+  }
+
+  get playingTrackAlbumName(): string {
+    if (replicant.spotifyPlayingTrack) {
+      return replicant.spotifyPlayingTrack.albumName;
     }
     return '';
   }
