@@ -16,6 +16,9 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "albumName": {
+                    "type":"string"
                 }
             },
             "required": [
